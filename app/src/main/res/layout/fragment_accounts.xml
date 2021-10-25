@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.nav.accounts.AccountsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/red_main"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounded_bg_rv">
+
+            <ImageView
+                android:id="@+id/foto_profil"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="16dp"
+                android:src="@drawable/foto_user"/>
+
+            <RelativeLayout
+                android:id="@+id/profil_akun"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp">
+
+                <TextView
+                    android:id="@+id/teks_nama_profil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="3dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Nama Profil"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/red_main"
+                    style="@style/TextAppearance.MaterialComponents.Headline5"/>
+
+                <TextView
+                    android:id="@+id/teks_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/teks_nama_profil"
+                    android:layout_marginTop="4dp"
+                    android:drawableLeft="@drawable/ic_email_red"
+                    android:padding="3dp"
+                    android:text="Email"
+                    android:textColor="@color/red_text"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/teks_no_telp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/teks_email"
+                    android:layout_marginTop="4dp"
+                    android:padding="3dp"
+                    android:drawableLeft="@drawable/ic_phone_red"
+                    android:text="Phone Number"
+                    android:textSize="14dp"
+                    android:textColor="@color/red_text" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_background">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPengaturan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corners"
+                android:text="Pengaturan"
+                android:textAlignment="textStart"
+                android:textColor="@color/red_main"
+                app:backgroundTint="@color/white"
+                android:layout_margin="10dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEditAkun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corners"
+                android:text="Edit Akun"
+                android:textAlignment="textStart"
+                android:textColor="@color/red_main"
+                app:backgroundTint="@color/white"
+                android:layout_margin="10dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnHelp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corners"
+                android:text="Pusat Bantuan"
+                android:textAlignment="textStart"
+                android:textColor="@color/red_main"
+                app:backgroundTint="@color/white"
+                android:layout_margin="10dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnReview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_corners"
+                android:text="Review Saya"
+                android:textAlignment="textStart"
+                android:textColor="@color/red_main"
+                app:backgroundTint="@color/white"
+                android:layout_margin="10dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="bottom"
+                android:background="@drawable/rounded_corners"
+                android:layout_marginTop="150dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:text="Logout" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

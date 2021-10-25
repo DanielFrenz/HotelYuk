@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red_main"
+    tools:context=".ui.nav.home.HotelDetailActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_hotel_detail"
+                android:layout_width="match_parent"
+                android:layout_height="308dp"
+                android:src="@drawable/img_hotel1"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/rounded_background"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/teks_nama_hotel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:textColor="@color/red_text"
+                        android:text="Nama Hotel"
+                        android:textSize="24dp"
+                        android:textStyle="bold"
+                        style="@style/TextAppearance.MaterialComponents.Headline5"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/teks_rating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:drawableLeft="@drawable/ic_star_border_red"
+                            android:text="Rating"
+                            android:textColor="@color/red_text"/>
+
+                        <TextView
+                            android:id="@+id/teks_review"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jumlah reviews"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:layout_marginLeft="30dp"
+                            android:background="@drawable/rounded_gray"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="8dp"
+                        android:drawableLeft="@drawable/ic_location_red"
+                        android:textColor="@color/red_text"
+                        android:textSize="16sp"
+                        android:text="Lokasi"/>
+
+                    <TextView
+                        android:id="@+id/teks_alamat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:text="Alamat Hotel"/>
+
+                    <com.mapbox.mapboxsdk.maps.MapView
+                        android:id="@+id/mapView"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:layout_margin="10dp"
+                        mapbox:mapbox_cameraTargetLat="40.73581"
+                        mapbox:mapbox_cameraTargetLng="-73.99155"
+                        mapbox:mapbox_cameraZoom="11"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnLokasi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:drawableLeft="@drawable/ic_location_red"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/rounded_input"
+                        app:backgroundTint="@color/white"
+                        android:layout_weight="1"
+                        android:layout_gravity="end"
+                        android:text="Lihat Lokasi"
+                        android:textColor="@color/red_text"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:text="Review Terbaik"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_item_review"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:listitem="@layout/rv_item_review"
+                        android:overScrollMode="never"/>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPesanKamar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/rounded_corners"
+                        android:layout_weight="1"
+                        android:text="Pesan Kamar Sekarang" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>

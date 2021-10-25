@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="htl"
+            type="com.example.hotelyuk.entity.Hotel" />
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/rv_layout_hotel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_bg_rv"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/img_hotel"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:loadImage="@{htl.imgUrl}" />
+
+            <LinearLayout
+                android:id="@+id/rl_datahotel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nama Hotel"
+                    android:text="@{htl.namaHotel}"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_review_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_star_border_gray"
+                        android:hint="Score"
+                        android:text="@{String.valueOf(htl.score)}"
+                        android:textColor="@color/gray_text"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/ic_location_outline_gray"
+                        android:hint="Location"
+                        android:text="@{htl.location}"
+                        android:textColor="@color/gray_text"
+                        android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_jumlah_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_gray"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="11sp"
+                    android:text="@{String.valueOf(htl.jumlahReview)}" />
+
+                <LinearLayout
+                    android:id="@+id/ll_harga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="112dp"
+                        android:layout_height="wrap_content"
+                        android:text="MULAI DARI :"
+                        android:textColor="@color/red_text" />
+
+                    <TextView
+                        android:id="@+id/tv_start_price"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:hint="Start Price"
+                        android:text="@{String.valueOf(htl.startPrice)}"
+                        android:textColor="@color/red_text" />
+                </LinearLayout>
+
+
+                <Button
+                    android:id="@+id/btnDetailHotel"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="130dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="40dp"
+                    android:drawableRight="@drawable/ic_arrow_right"
+                    android:text="Lihat Detail "
+                    android:textColor="@color/red_text"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>
