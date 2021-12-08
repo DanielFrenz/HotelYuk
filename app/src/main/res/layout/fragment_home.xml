@@ -19,26 +19,27 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/etSearch"
-                    android:layout_width="340dp"
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/sv_hotel"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_input"
-                    android:hint="Cari Hotel atau Penginapan"
-                    style="@style/Widget.AppCompat.EditText"
-                    android:drawableLeft="@drawable/ic_search"
-                    android:inputType="text"
-                    android:padding="4dp"/>
+                    android:iconifiedByDefault="false"
+                    android:background="@color/white"
+                    android:queryHint="Cari Penginapan atau Hotel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageButton
-                    android:id="@+id/imgButtonSetting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/red_main"
-                    android:layout_marginLeft="5dp"
-                    android:src="@drawable/ic_settings" />
+<!--                <ImageButton-->
+<!--                    android:id="@+id/imgButtonSetting"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/red_main"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:src="@drawable/ic_settings" />-->
             </LinearLayout>
 
             <ImageView
@@ -73,4 +74,9 @@
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/layout_loading"
+        layout="@layout/layout_loading"
+        android:visibility="gone" />
 </FrameLayout>

@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2203125" />
+        <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/drawable/ic_account.xml" value="0.2203125" />
+        <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/drawable/ic_calendar.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/drawable/ic_cloud.xml" value="0.2203125" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/drawable/ic_email.xml" value="0.10416666666666667" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/drawable/ic_email_red.xml" value="0.2203125" />
@@ -23,18 +25,24 @@
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/drawable/rounded_corners.xml" value="0.1125" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/drawable/rounded_gray.xml" value="0.16" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/drawable/rounded_input.xml" value="0.1125" />
+        <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/activity_edit_account.xml" value="0.22" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/activity_history_detail.xml" value="0.1671195652173913" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/activity_hotel_detail.xml" value="0.33" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/activity_location.xml" value="0.22" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/activity_login.xml" value="0.21" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/activity_main.xml" value="0.1403985507246377" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/activity_pesan_kamar.xml" value="0.18614130434782608" />
-        <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/activity_pusat_bantuan.xml" value="0.33" />
+        <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/activity_register.xml" value="0.22" />
+        <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/activity_review_saya.xml" value="0.12681159420289856" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/activity_settings.xml" value="0.1671195652173913" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/activity_welcome.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/fragment_accounts.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/fragment_history.xml" value="0.33" />
-        <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/layout_loading.xml" value="0.5" />
+        <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/layout_select_media.xml" value="0.15625" />
+        <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/rv_item_bantuan.xml" value="0.22" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/rv_item_history.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/rv_item_hotel.xml" value="0.33" />
         <entry key="..\:/Users/ASUS/HotelYuk/app/src/main/res/layout/rv_item_kamar.xml" value="0.33" />

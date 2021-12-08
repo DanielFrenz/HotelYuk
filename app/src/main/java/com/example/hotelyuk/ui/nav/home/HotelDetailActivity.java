@@ -13,14 +13,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.hotelyuk.R;
 import com.example.hotelyuk.adapter.RVHotelAdapter;
 import com.example.hotelyuk.adapter.RVReviewAdapter;
+import com.example.hotelyuk.api.ApiClient;
+import com.example.hotelyuk.api.ApiInterface;
+import com.example.hotelyuk.apiresponse.ReviewResponse;
+import com.example.hotelyuk.data.DaftarHotel;
 import com.example.hotelyuk.databinding.ActivityHotelDetailBinding;
 import com.example.hotelyuk.entity.Hotel;
 import com.example.hotelyuk.entity.Review;
+import com.example.hotelyuk.preferences.UserPreferences;
 import com.example.hotelyuk.ui.LocationActivity;
 import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.FeatureCollection;
@@ -36,7 +42,14 @@ import com.mapbox.mapboxsdk.style.layers.SymbolLayer;
 import com.mapbox.mapboxsdk.style.sources.GeoJsonSource;
 import com.mapbox.mapboxsdk.utils.BitmapUtils;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HotelDetailActivity extends AppCompatActivity {
     private static final String ICON_LAYER_ID = "icon-layer-id";
@@ -45,8 +58,12 @@ public class HotelDetailActivity extends AppCompatActivity {
 
     private ActivityHotelDetailBinding binding;
     private Hotel hotel;
+    private int hotelId;
     private Point locationPoint;
-    private ArrayList<Review> listReview;
+    private UserPreferences userPreferences;
+    private RVReviewAdapter adapter;
+    private List<Review> listReview;
+    private ApiInterface apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +74,18 @@ public class HotelDetailActivity extends AppCompatActivity {
         binding = ActivityHotelDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        apiService = ApiClient.getClient().create(ApiInterface.class);
+
+        userPreferences = new UserPreferences(this);
+
         // Obtaining data from intent
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             hotel = (Hotel)getIntent().getSerializableExtra("hotel");
         }
+
+        // Set Title ke nama hotel
+        setTitle(hotel.getNamaHotel());
 
         // Setup Mapbox Map
         binding.mapView.onCreate(savedInstanceState);
@@ -91,16 +115,16 @@ public class HotelDetailActivity extends AppCompatActivity {
         loadImage(binding.imgHotelDetail, hotel.getImgUrl());
         binding.teksNamaHotel.setText(hotel.getNamaHotel());
         binding.teksRating.setText(" " + String.valueOf(hotel.getScore()) + " / 5.0");
-        binding.teksReview.setText(String.valueOf(hotel.getJumlahReview()) + " reviews");
         binding.teksAlamat.setText(hotel.getAlamat());
 
-        // Setup RV for Reviews
-        listReview = new ArrayList();
-        listReview = hotel.getListReview();
-        binding.rvItemReview.getLayoutManager().removeAllViews();
-        RVReviewAdapter rvReviewAdapter = new RVReviewAdapter(listReview);
-        binding.rvItemReview.setAdapter(rvReviewAdapter);
-        rvReviewAdapter.notifyDataSetChanged();
+        // Setup RV for Review
+        adapter = new RVReviewAdapter(new ArrayList<>());
+        adapter.clearList();
+        binding.rvItemReview.setAdapter(adapter);
+//        getListReview(hotel.getId());
+//        binding.teksReview.setText(String.valueOf(adapter.getItemCount()));
+        binding.teksReview.setText("5 reviews");
+        adapter.setListReview(new DaftarHotel().daftarReview);
 
         // Button OnClickListener
         binding.btnLokasi.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +146,33 @@ public class HotelDetailActivity extends AppCompatActivity {
                 Intent i = new Intent(HotelDetailActivity.this, PesanKamarActivity.class);
                 i.putExtra("hotel", hotel);
                 startActivity(i);
+            }
+        });
+    }
+
+    private void getListReview(long id) {
+        Call<ReviewResponse> call = apiService.getListReviewByHotel("Bearer " + userPreferences.getAccessToken(), id);
+
+        call.enqueue(new Callback<ReviewResponse>() {
+            @Override
+            public void onResponse(Call<ReviewResponse> call, Response<ReviewResponse> response) {
+                if (response.isSuccessful()) {
+                    adapter.setListReview(response.body().getReviewList());
+                } else {
+                    try {
+                        JSONObject jObjError = new JSONObject(response.errorBody().string());
+                        Toast.makeText(HotelDetailActivity.this, jObjError.getString("message"),
+                                Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Toast.makeText(HotelDetailActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ReviewResponse> call, Throwable t) {
+                Toast.makeText(HotelDetailActivity.this, "Network error",
+                        Toast.LENGTH_SHORT).show();
             }
         });
     }

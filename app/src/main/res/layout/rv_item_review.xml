@@ -26,9 +26,12 @@
                 android:layout_margin="10dp">
 
                 <TextView
-                    android:layout_width="120dp"
+                    android:id="@+id/tv_nama_user"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:padding="4dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="10dp"
                     android:hint="User"
                     android:text="@{rev.namaUser}"/>
 
@@ -42,27 +45,31 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/rounded_gray"
-                    android:padding="4dp"
-                    android:hint="Teks review disini"
-                    android:text="@{rev.comment}"/>
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:layout_gravity="end"
-                android:drawableStart="@drawable/ic_star_border_gray"
-                android:hint="Rating"
-                android:text="@{String.valueOf(rev.score)}"/>
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="260dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rounded_gray"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:paddingLeft="10dp"
+                    android:hint="Teks review disini"
+                    android:text="@{rev.comment}"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_gravity="bottom"
+                    android:drawableStart="@drawable/ic_star_border_gray"
+                    android:hint="Rating"
+                    android:text="@{String.valueOf(rev.score)}" />
+
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </layout>

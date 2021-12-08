@@ -23,7 +23,7 @@
 
                 <EditText
                     android:id="@+id/etSearch"
-                    android:layout_width="340dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rounded_input"
                     android:hint="Cari Hotel atau Penginapan"
@@ -32,13 +32,13 @@
                     android:inputType="text"
                     android:padding="4dp"/>
 
-                <ImageButton
-                    android:id="@+id/imgButtonSetting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/red_main"
-                    android:layout_marginLeft="5dp"
-                    android:src="@drawable/ic_settings" />
+<!--                <ImageButton-->
+<!--                    android:id="@+id/imgButtonSetting"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:background="@color/red_main"-->
+<!--                    android:layout_marginLeft="5dp"-->
+<!--                    android:src="@drawable/ic_settings" />-->
             </LinearLayout>
 
             <LinearLayout

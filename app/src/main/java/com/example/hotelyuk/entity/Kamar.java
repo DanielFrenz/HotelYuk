@@ -6,22 +6,34 @@ import androidx.databinding.BindingAdapter;
 
 import com.bumptech.glide.Glide;
 import com.example.hotelyuk.R;
+import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Kamar implements Serializable {
+    @SerializedName("nama_kamar")
     private String namaKamar;
+    @SerializedName("hotel_id")
+    private long hotelId;
+    @SerializedName("img_url")
     private String imgUrl;
+    @SerializedName("harga")
     private long harga;
-    private ArrayList<String> listSpek;
 
-    public Kamar(String namaKamar, String imgUrl, long harga, ArrayList<String> listSpek)
+//    public Kamar(String namaKamar, long hotelId, String imgUrl, long harga)
+//    {
+//        this.namaKamar = namaKamar;
+//        this.hotelId = hotelId;
+//        this.imgUrl = imgUrl;
+//        this.harga = harga;
+//    }
+
+    public Kamar(String namaKamar, String imgUrl, long harga)
     {
         this.namaKamar = namaKamar;
         this.imgUrl = imgUrl;
         this.harga = harga;
-        this.listSpek = listSpek;
     }
 
     public String getNamaKamar() {
@@ -30,6 +42,14 @@ public class Kamar implements Serializable {
 
     public void setNamaKamar(String namaKamar) {
         this.namaKamar = namaKamar;
+    }
+
+    public long getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(long hotelId) {
+        this.hotelId = hotelId;
     }
 
     public String getImgUrl() {
@@ -48,21 +68,16 @@ public class Kamar implements Serializable {
         this.harga = harga;
     }
 
-    public ArrayList<String> getListSpek() {
-        return listSpek;
-    }
-
-    public void setListSpek(ArrayList<String> listSpek) {
-        this.listSpek = listSpek;
-    }
-
     @BindingAdapter("android:loadImage")
     public static void loadImage(ImageView imageView, String imgUrl){
         Glide.with(imageView)
                 .load(imgUrl)
                 .centerCrop()
+                .circleCrop()
                 .placeholder(R.drawable.ic_loop)
                 .error(R.drawable.ic_error_outline)
                 .into(imageView);
     }
+
+
 }

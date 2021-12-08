@@ -48,6 +48,8 @@ public class LocationActivity extends AppCompatActivity {
         binding = ActivityLocationBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        setTitle("Lokasi");
+
         // Obtaining LatLng data from intent
         Bundle bundle = getIntent().getExtras();
         double latitude = bundle.getDouble("latitude");

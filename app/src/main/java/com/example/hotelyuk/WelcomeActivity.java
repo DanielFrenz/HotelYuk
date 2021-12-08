@@ -19,6 +19,8 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
+        setTitle(R.string.app_name);
+
         sharedPreferences = getSharedPreferences("MyPrefs",MODE_PRIVATE);
 
         firstTime = sharedPreferences.getBoolean("firstTime",true);

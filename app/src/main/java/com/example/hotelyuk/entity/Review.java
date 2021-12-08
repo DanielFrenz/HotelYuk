@@ -1,12 +1,25 @@
 package com.example.hotelyuk.entity;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
+import java.util.Date;
 
 public class Review implements Serializable {
-    private String namaUser;
+    @SerializedName("id")
+    private long id;
+    @SerializedName("user_id")
+    private long userId;
+    @SerializedName("hotel_id")
+    private long hotelId;
+    @SerializedName("tanggal")
     private String tanggal;
+    @SerializedName("comment")
     private String comment;
+    @SerializedName("score")
     private int score;
+
+    private String namaUser;
 
     public Review(String namaUser, String tanggal, String comment, int score){
         this.namaUser = namaUser;
@@ -15,12 +28,30 @@ public class Review implements Serializable {
         this.score = score;
     }
 
-    public String getNamaUser() {
-        return namaUser;
+    public Review(){}
+
+    public long getId() {
+        return id;
     }
 
-    public void setNamaUser(String namaUser) {
-        this.namaUser = namaUser;
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
+    }
+
+    public long getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(long hotelId) {
+        this.hotelId = hotelId;
     }
 
     public String getTanggal() {
@@ -45,5 +76,13 @@ public class Review implements Serializable {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public String getNamaUser() {
+        return namaUser;
+    }
+
+    public void setNamaUser(String namaUser) {
+        this.namaUser = namaUser;
     }
 }

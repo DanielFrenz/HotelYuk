@@ -1,42 +1,36 @@
-package com.example.hotelyuk.room.model;
+package com.example.hotelyuk.entity;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import com.google.gson.annotations.SerializedName;
 
-@Entity(tableName = "users")
 public class User {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
-
-    @ColumnInfo(name = "email")
-    private String email;
-
-    @ColumnInfo(name = "password")
-    private String password;
-
-    @ColumnInfo(name = "username")
+    @SerializedName("id")
+    private Long id;
+    @SerializedName("name")
     private String username;
-
-    @ColumnInfo(name = "no_telp")
+    @SerializedName("email")
+    private String email;
+    @SerializedName("password")
+    private String password;
+    @SerializedName("phone_number")
     private String no_telp;
+    @SerializedName("img_url")
+    private String img_url;
 
-    public User(int id, String email, String password, String username, String no_telp) {
-        this.id = id;
+    public User(String username, String email, String password, String no_telp, String img_url) {
+        this.username = username;
         this.email = email;
         this.password = password;
-        this.username = username;
         this.no_telp = no_telp;
+        this.img_url = img_url;
     }
 
     public User(){ }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,5 +64,13 @@ public class User {
 
     public void setNo_telp(String no_telp) {
         this.no_telp = no_telp;
+    }
+
+    public String getImg_url() {
+        return img_url;
+    }
+
+    public void setImg_url(String img_url) {
+        this.img_url = img_url;
     }
 }

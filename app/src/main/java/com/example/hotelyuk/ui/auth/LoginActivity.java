@@ -3,31 +3,51 @@ package com.example.hotelyuk.ui.auth;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.hotelyuk.MainActivity;
 import com.example.hotelyuk.R;
+import com.example.hotelyuk.api.ApiClient;
+import com.example.hotelyuk.api.ApiInterface;
+import com.example.hotelyuk.apiresponse.UserResponse;
+import com.example.hotelyuk.entity.LoginData;
 import com.example.hotelyuk.preferences.UserPreferences;
-import com.example.hotelyuk.room.database.DatabaseClient;
-import com.example.hotelyuk.room.model.User;
+import com.example.hotelyuk.entity.User;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+
+import org.json.JSONObject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
     private TextInputEditText etEmail, etPassword;
     private MaterialButton btnLogin, btnRegister;
     private UserPreferences userPreferences;
+    private User user;
+    private ApiInterface apiService;
+    private LinearLayout layoutLoading;
+    private String access_token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        setTitle("Login");
+
+        apiService = ApiClient.getClient().create(ApiInterface.class);
         userPreferences = new UserPreferences(LoginActivity.this);
 
+        user = new User();
+
+        layoutLoading = findViewById(R.id.layout_loading);
         etEmail = findViewById(R.id.etEmail);
         etPassword = findViewById(R.id.etPassword);
 
@@ -49,45 +69,52 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(validateForm()){
-                    attemptLogin(etEmail.getText().toString().trim(), etPassword.getText().toString().trim());
+                    loginUser();
                 }
             }
         });
-
     }
 
+    private void loginUser() {
+        setLoading(true);
+        LoginData loginData = new LoginData(etEmail.getText().toString(), etPassword.getText().toString());
+        Call<UserResponse> call = apiService.loginUser(loginData);
 
-    private void attemptLogin(String email, String password){
-
-        class AttemptLogin extends AsyncTask<Void, Void, User> {
+        call.enqueue(new Callback<UserResponse>() {
             @Override
-            protected User doInBackground(Void... voids) {
+            public void onResponse(Call<UserResponse> call,
+                                   Response<UserResponse> response) {
+                if (response.isSuccessful()) {
+                    Toast.makeText(LoginActivity.this,
+                            response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                    access_token = response.body().getAccessToken();
+                    user = response.body().getUser();
 
-                User user = DatabaseClient.getInstance(LoginActivity.this)
-                        .getDatabase()
-                        .userDao()
-                        .attemptLogin(email,password);
-
-                return user;
-            }
-
-            @Override
-            protected void onPostExecute(User user) {
-                super.onPostExecute(user);
-                if(user == null){
-                    Toast.makeText(LoginActivity.this, "Email atau password salah", Toast.LENGTH_SHORT).show();
-                }else {
-                    Toast.makeText(LoginActivity.this, "Berhasil login", Toast.LENGTH_SHORT).show();
-                    userPreferences.setUser(user.getId(), user.getEmail(), user.getPassword(),
-                            user.getUsername(), user.getNo_telp());
+                    userPreferences.setUser(user.getId(), user.getUsername(), user.getEmail(), user.getPassword(),
+                            user.getNo_telp(), user.getImg_url(), access_token);
+                    checkLogin();
+                } else {
+                    try {
+                        JSONObject jObjError = new
+                                JSONObject(response.errorBody().string());
+                        Toast.makeText(LoginActivity.this,
+                                jObjError.getString("message"),
+                                Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Toast.makeText(LoginActivity.this,
+                                e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
                 }
-                checkLogin();
+                setLoading(false);
             }
 
-        }
-
-        AttemptLogin attemptLogin = new AttemptLogin();
-        attemptLogin.execute();
+            @Override
+            public void onFailure(Call<UserResponse> call, Throwable t) {
+                Toast.makeText(LoginActivity.this,
+                        t.getMessage(), Toast.LENGTH_SHORT).show();
+                setLoading(false);
+            }
+        });
     }
 
     private boolean validateForm(){
@@ -106,4 +133,14 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    private void setLoading(boolean isLoading) {
+        if (isLoading) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                    WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            layoutLoading.setVisibility(View.VISIBLE);
+        } else {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+            layoutLoading.setVisibility(View.INVISIBLE);
+        }
+    }
 }

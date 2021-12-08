@@ -18,7 +18,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.hotelyuk.preferences.UserPreferences;
-import com.example.hotelyuk.room.model.User;
+import com.example.hotelyuk.entity.User;
 import com.example.hotelyuk.ui.nav.accounts.AccountsFragment;
 import com.example.hotelyuk.ui.nav.history.HistoryFragment;
 import com.example.hotelyuk.ui.nav.home.HomeFragment;
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 return true;
             case R.id.navigation_accounts:
                 changeFragment(new AccountsFragment());
-                setTitle(R.string.title_history);
+                setTitle(R.string.title_accounts);
                 return true;
         }
         return false;

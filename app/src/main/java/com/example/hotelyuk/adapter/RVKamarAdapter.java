@@ -9,12 +9,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.hotelyuk.databinding.RvItemKamarBinding;
 import com.example.hotelyuk.entity.Kamar;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class RVKamarAdapter extends RecyclerView.Adapter<RVKamarAdapter.viewHolder> {
-    ArrayList<Kamar> listKamar;
+    private List<Kamar> listKamar;
 
-    public RVKamarAdapter(ArrayList<Kamar> listKamar){
+    public RVKamarAdapter(List<Kamar> listKamar){
         this.listKamar = listKamar;
     }
 
@@ -42,12 +45,26 @@ public class RVKamarAdapter extends RecyclerView.Adapter<RVKamarAdapter.viewHold
         holder.rvItemKamarBinding.setKmr(kamar);
         holder.rvItemKamarBinding.executePendingBindings();
 
-        holder.rvItemKamarBinding.tvHargaKamar.setText("IDR. " + holder.rvItemKamarBinding.tvHargaKamar.getText());
+        DecimalFormat rupiahFormat = (DecimalFormat) DecimalFormat
+                .getCurrencyInstance(new Locale("in", "ID"));
+        holder.rvItemKamarBinding.tvHargaKamar.setText(rupiahFormat.format(kamar.getHarga()));
     }
 
     @Override
     public int getItemCount() {
         //  Disini kita memberitahu jumlah dari item pada recycler view kita.
         return listKamar.size();
+    }
+
+    public List<Kamar> getListKamar() {
+        return listKamar;
+    }
+
+    public void setListKamar(List<Kamar> listKamar) {
+        this.listKamar = listKamar;
+    }
+
+    public void clearList() {
+        listKamar.clear();
     }
 }

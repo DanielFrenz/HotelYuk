@@ -16,4 +16,5 @@
     <string name="title_home">Home</string>
     <string name="title_history">History</string>
     <string name="title_accounts">Accounts</string>
+    <string name="loading_text">Loading...</string>
 </resources>

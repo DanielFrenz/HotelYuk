@@ -10,11 +10,12 @@ import com.example.hotelyuk.databinding.RvItemReviewBinding;
 import com.example.hotelyuk.entity.Review;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class RVReviewAdapter extends RecyclerView.Adapter<RVReviewAdapter.viewHolder>{
-    ArrayList<Review> listReview;
+    private List<Review> listReview;
 
-    public RVReviewAdapter(ArrayList<Review> listReview){
+    public RVReviewAdapter(List<Review> listReview){
         this.listReview = listReview;
     }
 
@@ -40,11 +41,25 @@ public class RVReviewAdapter extends RecyclerView.Adapter<RVReviewAdapter.viewHo
         Review review = listReview.get(position);
         holder.rvItemReviewBinding.setRev(review);
         holder.rvItemReviewBinding.executePendingBindings();
+
+//        holder.rvItemReviewBinding.tvNamaUser.setText("User " + String.valueOf(review.getUserId()));
     }
 
     @Override
     public int getItemCount() {
         //  Disini kita memberitahu jumlah dari item pada recycler view kita.
         return listReview.size();
+    }
+
+    public List<Review> getListReview() {
+        return listReview;
+    }
+
+    public void setListReview(List<Review> listReview) {
+        this.listReview = listReview;
+    }
+
+    public void clearList() {
+        listReview.clear();
     }
 }
